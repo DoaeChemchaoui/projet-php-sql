@@ -31,6 +31,7 @@
                     <th>Heure</th>
                     <th>Durée (min)</th>
                     <th>Max Participants</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +47,10 @@
                             <td>{$row['heure']}</td>
                             <td>{$row['durée']}</td>
                             <td>{$row['maxParticipants']}</td>
+                            <td>
+                                <a href='../cours/modifier.php?idCours={$row['idCours']}' class='btn-edit'>Modifier</a>
+                                <a href='../cours/supprimer.php?idCours={$row['idCours']}' class='btn-delete' onclick=\"return confirm('Voulez-vous vraiment supprimer ce cours ?')\">Supprimer</a>
+                            </td>
                           </tr>";
                 }
                 ?>
