@@ -39,19 +39,23 @@
                 $sql = "SELECT * FROM cours";
                 $result = $conn->query($sql);
 
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                            <td>{$row['nom']}</td>
-                            <td>{$row['categorie']}</td>
-                            <td>{$row['date']}</td>
-                            <td>{$row['heure']}</td>
-                            <td>{$row['durée']}</td>
-                            <td>{$row['maxParticipants']}</td>
-                            <td>
-                                <a href='../cours/modifier.php?idCours={$row['idCours']}' class='btn-edit'>Modifier</a>
-                                <a href='../cours/supprimer.php?idCours={$row['idCours']}' class='btn-delete' onclick=\"return confirm('Voulez-vous vraiment supprimer ce cours ?')\">Supprimer</a>
-                            </td>
-                          </tr>";
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>{$row['nom']}</td>
+                                <td>{$row['categorie']}</td>
+                                <td>{$row['date']}</td>
+                                <td>{$row['heure']}</td>
+                                <td>{$row['durée']}</td>
+                                <td>{$row['maxParticipants']}</td>
+                                <td>
+                                    <a href='../cours/modifier.php?idCours={$row['idCours']}' class='btn-edit'>Modifier</a>
+                                    <a href='../cours/supprimer.php?idCours={$row['idCours']}' class='btn-delete' onclick=\"return confirm('Voulez-vous vraiment supprimer ce cours ?')\">Supprimer</a>
+                                </td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7' style='text-align:center;'>Aucun cours trouvé</td></tr>";
                 }
                 ?>
             </tbody>
